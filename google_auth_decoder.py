@@ -1,10 +1,13 @@
+#!/usr/bin/env python3
+# TODO add QR code reading and output.
+
 from urllib.parse import unquote
 from base64 import b32encode, b64decode
 import google_auth_pb2
 
 params = google_auth_pb2.MigrationPayload()
 
-# get part after otpauth-migration://offline?
+# get part after otpauth-migration://offline? read from STDIN to prevent history issues.
 migrate_string = input("Enter the google migration string: ")[28:]
 auth_data = b64decode(unquote(migrate_string))
 
